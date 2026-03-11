@@ -1,83 +1,627 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss";
 
+@import 'tw-animate-css';
+
 @custom-variant dark (&:is(.dark *));
+@custom-variant grey (&:is(.grey *));
 
+/* ─── Root (light) theme ─────────────────────────────────────────────────── */
+:root {
+  /* PLASTIC 3D SYSTEM — light background adaptation */
+  --shadow-color: 220 10% 15%;
+
+  --highlight-top:    hsl(0 0% 100% / 80%);
+  --highlight-edge:   hsl(0 0% 100% / 60%);
+  --highlight-subtle: hsl(0 0% 100% / 40%);
+
+  /* Elevation outset */
+  --shadow-xs:
+    inset 0 1px 0 0 var(--highlight-subtle),
+    0 0 0 1px hsl(var(--shadow-color) / 8%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 15%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 10%);
+
+  --shadow-sm:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 15%),
+    0 3px 6px -1px hsl(var(--shadow-color) / 12%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 8%);
+
+  --shadow-md:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 15%),
+    0 6px 12px -2px hsl(var(--shadow-color) / 12%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 8%);
+
+  --shadow-lg:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 15%),
+    0 12px 24px -4px hsl(var(--shadow-color) / 12%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 8%);
+
+  --shadow-xl:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 8px 16px 0 hsl(var(--shadow-color) / 15%),
+    0 24px 48px -8px hsl(var(--shadow-color) / 12%),
+    0 48px 96px -24px hsl(var(--shadow-color) / 8%);
+
+  --shadow-2xl:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 16px 32px 0 hsl(var(--shadow-color) / 18%),
+    0 32px 64px -16px hsl(var(--shadow-color) / 12%),
+    0 64px 128px -32px hsl(var(--shadow-color) / 8%);
+
+  /* Buttons */
+  --shadow-btn:
+    inset 0 1px 0 0 hsl(0 0% 100% / 50%),
+    inset 0 -1px 0 0 hsl(var(--shadow-color) / 10%),
+    0 0 0 1px hsl(var(--shadow-color) / 12%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 18%),
+    0 4px 8px -2px hsl(var(--shadow-color) / 12%);
+
+  --shadow-btn-hover:
+    inset 0 1px 0 0 hsl(0 0% 100% / 60%),
+    inset 0 -1px 0 0 hsl(var(--shadow-color) / 8%),
+    0 0 0 1px hsl(var(--shadow-color) / 15%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 20%),
+    0 8px 16px -4px hsl(var(--shadow-color) / 15%),
+    0 16px 32px -8px hsl(var(--shadow-color) / 10%);
+
+  --shadow-btn-active:
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 20%),
+    inset 0 0 0 1px hsl(var(--shadow-color) / 12%),
+    0 0 0 1px hsl(var(--shadow-color) / 5%);
+
+  /* Cards */
+  --shadow-card:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(var(--shadow-color) / 10%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 15%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 12%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 8%);
+
+  --shadow-card-hover:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 12%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 18%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 12%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 8%);
+
+  /* Dialog */
+  --shadow-dialog:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(var(--shadow-color) / 12%),
+    0 0 0 4px hsl(var(--shadow-color) / 5%),
+    0 16px 32px 0 hsl(var(--shadow-color) / 25%),
+    0 32px 64px -16px hsl(var(--shadow-color) / 18%);
+
+  /* Inputs / inset */
+  --shadow-input:
+    inset 0 0 0 1px hsl(var(--shadow-color) / 15%),
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 12%),
+    inset 0 1px 2px 0 hsl(var(--shadow-color) / 10%),
+    0 1px 0 0 hsl(0 0% 100% / 80%);
+
+  --shadow-input-focus:
+    inset 0 0 0 1px hsl(var(--shadow-color) / 8%),
+    inset 0 1px 2px 0 hsl(var(--shadow-color) / 6%);
+
+  --shadow-inner:    inset 0 2px 4px 0 hsl(var(--shadow-color) / 12%);
+
+  --shadow-inner-sm:
+    inset 0 1px 4px 0 hsl(var(--shadow-color) / 15%),
+    inset 0 0 0 1px hsl(var(--shadow-color) / 8%);
+
+  --shadow-inset-well:
+    inset 0 2px 8px 0 hsl(var(--shadow-color) / 12%),
+    inset 0 1px 3px 0 hsl(var(--shadow-color) / 10%),
+    inset 0 0 0 1px hsl(var(--shadow-color) / 8%),
+    0 1px 0 0 hsl(0 0% 100% / 70%);
+
+  --shadow-inset-well-deep:
+    inset 0 0 0 3px hsl(var(--shadow-color) / 6%),
+    inset 0 2px 6px 2px hsl(var(--shadow-color) / 8%),
+    inset 0 1px 2px 2px hsl(var(--shadow-color) / 5%),
+    0 1px 0 0 hsl(0 0% 100% / 90%);
+
+  /* Color tokens */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.871 0.006 286.286);
+  --radius: 0.625rem;
+}
+
+/* ─── Dark theme ─────────────────────────────────────────────────────────── */
+.dark {
+  --shadow-color: 0 0% 0%;
+
+  --highlight-top:    hsl(0 0% 100% / 12%);
+  --highlight-edge:   hsl(0 0% 100% / 8%);
+  --highlight-subtle: hsl(0 0% 100% / 5%);
+
+  --shadow-xs:
+    inset 0 1px 0 0 var(--highlight-subtle),
+    0 0 0 1px hsl(0 0% 100% / 5%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 60%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 40%);
+
+  --shadow-sm:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(0 0% 100% / 6%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 60%),
+    0 3px 6px -1px hsl(var(--shadow-color) / 50%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 30%);
+
+  --shadow-md:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 7%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 60%),
+    0 6px 12px -2px hsl(var(--shadow-color) / 50%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 35%);
+
+  --shadow-lg:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 8%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 60%),
+    0 12px 24px -4px hsl(var(--shadow-color) / 50%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 35%);
+
+  --shadow-xl:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 8%),
+    0 8px 16px 0 hsl(var(--shadow-color) / 60%),
+    0 24px 48px -8px hsl(var(--shadow-color) / 50%),
+    0 48px 96px -24px hsl(var(--shadow-color) / 35%);
+
+  --shadow-btn:
+    inset 0 1px 0 0 hsl(0 0% 100% / 15%),
+    inset 0 -1px 0 0 hsl(0 0% 0% / 20%),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 70%),
+    0 4px 8px -2px hsl(var(--shadow-color) / 50%);
+
+  --shadow-btn-hover:
+    inset 0 1px 0 0 hsl(0 0% 100% / 20%),
+    inset 0 -1px 0 0 hsl(0 0% 0% / 15%),
+    0 0 0 1px hsl(0 0% 100% / 12%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 70%),
+    0 8px 16px -4px hsl(var(--shadow-color) / 50%),
+    0 16px 32px -8px hsl(var(--shadow-color) / 30%);
+
+  --shadow-btn-active:
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 0 0 1px hsl(var(--shadow-color) / 30%),
+    0 0 0 1px hsl(0 0% 100% / 5%);
+
+  --shadow-card:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(0 0% 100% / 6%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 60%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 50%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 30%);
+
+  --shadow-card-hover:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 60%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 50%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 35%);
+
+  --shadow-dialog:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 0 0 4px hsl(var(--shadow-color) / 30%),
+    0 16px 32px 0 hsl(var(--shadow-color) / 80%),
+    0 32px 64px -16px hsl(var(--shadow-color) / 60%);
+
+  --shadow-input:
+    inset 0 0 0 1px hsl(0 0% 0% / 40%),
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 1px 2px 0 hsl(var(--shadow-color) / 40%),
+    0 1px 0 0 hsl(0 0% 100% / 5%);
+
+  --shadow-inner-sm:
+    inset 0 1px 4px 0 hsl(var(--shadow-color) / 50%),
+    inset 0 0 0 1px hsl(0 0% 0% / 20%);
+
+  --shadow-inset-well:
+    inset 0 2px 8px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 1px 3px 0 hsl(var(--shadow-color) / 40%),
+    inset 0 0 0 1px hsl(0 0% 0% / 30%),
+    0 1px 0 0 hsl(0 0% 100% / 6%);
+
+  --shadow-inset-well-deep:
+    inset 0 0 0 3px hsl(0 0% 0% / 40%),
+    inset 0 2px 6px 2px hsl(0 0% 0% / 60%),
+    inset 0 1px 2px 2px hsl(0 0% 0% / 40%),
+    0 1px 0 0 hsl(0 0% 100% / 6%);
+
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.141 0.005 285.823);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.141 0.005 285.823);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.274 0.006 286.033);
+  --input: oklch(0.274 0.006 286.033);
+  --ring: oklch(0.442 0.017 285.786);
+}
+
+/* ─── Grey theme (dark variant) ─────────────────────────────────────────── */
+.grey {
+  --shadow-color: 0 0% 0%;
+
+  --highlight-top:    hsl(0 0% 100% / 12%);
+  --highlight-edge:   hsl(0 0% 100% / 8%);
+  --highlight-subtle: hsl(0 0% 100% / 5%);
+
+  --shadow-xs:
+    inset 0 1px 0 0 var(--highlight-subtle),
+    0 0 0 1px hsl(0 0% 100% / 5%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 60%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 40%);
+
+  --shadow-sm:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(0 0% 100% / 6%),
+    0 1px 2px 0 hsl(var(--shadow-color) / 60%),
+    0 3px 6px -1px hsl(var(--shadow-color) / 50%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 30%);
+
+  --shadow-md:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 7%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 60%),
+    0 6px 12px -2px hsl(var(--shadow-color) / 50%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 35%);
+
+  --shadow-lg:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 8%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 60%),
+    0 12px 24px -4px hsl(var(--shadow-color) / 50%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 35%);
+
+  --shadow-xl:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 8%),
+    0 8px 16px 0 hsl(var(--shadow-color) / 60%),
+    0 24px 48px -8px hsl(var(--shadow-color) / 50%),
+    0 48px 96px -24px hsl(var(--shadow-color) / 35%);
+
+  --shadow-btn:
+    inset 0 1px 0 0 hsl(0 0% 100% / 15%),
+    inset 0 -1px 0 0 hsl(0 0% 0% / 20%),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 70%),
+    0 4px 8px -2px hsl(var(--shadow-color) / 50%);
+
+  --shadow-btn-hover:
+    inset 0 1px 0 0 hsl(0 0% 100% / 20%),
+    inset 0 -1px 0 0 hsl(0 0% 0% / 15%),
+    0 0 0 1px hsl(0 0% 100% / 12%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 70%),
+    0 8px 16px -4px hsl(var(--shadow-color) / 50%),
+    0 16px 32px -8px hsl(var(--shadow-color) / 30%);
+
+  --shadow-btn-active:
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 0 0 1px hsl(var(--shadow-color) / 30%),
+    0 0 0 1px hsl(0 0% 100% / 5%);
+
+  --shadow-card:
+    inset 0 1px 0 0 var(--highlight-edge),
+    0 0 0 1px hsl(0 0% 100% / 6%),
+    0 2px 4px 0 hsl(var(--shadow-color) / 60%),
+    0 6px 12px -3px hsl(var(--shadow-color) / 50%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 30%);
+
+  --shadow-card-hover:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 4px 8px 0 hsl(var(--shadow-color) / 60%),
+    0 12px 24px -6px hsl(var(--shadow-color) / 50%),
+    0 24px 48px -12px hsl(var(--shadow-color) / 35%);
+
+  --shadow-dialog:
+    inset 0 1px 0 0 var(--highlight-top),
+    0 0 0 1px hsl(0 0% 100% / 10%),
+    0 0 0 4px hsl(var(--shadow-color) / 30%),
+    0 16px 32px 0 hsl(var(--shadow-color) / 80%),
+    0 32px 64px -16px hsl(var(--shadow-color) / 60%);
+
+  --shadow-input:
+    inset 0 0 0 1px hsl(0 0% 0% / 40%),
+    inset 0 2px 6px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 1px 2px 0 hsl(var(--shadow-color) / 40%),
+    0 1px 0 0 hsl(0 0% 100% / 5%);
+
+  --shadow-inner-sm:
+    inset 0 1px 4px 0 hsl(var(--shadow-color) / 50%),
+    inset 0 0 0 1px hsl(0 0% 0% / 20%);
+
+  --shadow-inset-well:
+    inset 0 2px 8px 0 hsl(var(--shadow-color) / 60%),
+    inset 0 1px 3px 0 hsl(var(--shadow-color) / 40%),
+    inset 0 0 0 1px hsl(0 0% 0% / 30%),
+    0 1px 0 0 hsl(0 0% 100% / 5%);
+
+  --shadow-inset-well-deep:
+    inset 0 0 0 3px hsl(0 0% 0% / 40%),
+    inset 0 2px 6px 2px hsl(0 0% 0% / 60%),
+    inset 0 1px 2px 2px hsl(0 0% 0% / 40%),
+    0 1px 0 0 hsl(0 0% 100% / 6%);
+
+  --background: oklch(0.18 0.005 285);
+  --foreground: oklch(0.92 0 0);
+  --card: oklch(0.20 0.005 285);
+  --card-foreground: oklch(0.92 0 0);
+  --popover: oklch(0.20 0.005 285);
+  --popover-foreground: oklch(0.92 0 0);
+  --primary: oklch(0.92 0 0);
+  --primary-foreground: oklch(0.18 0.005 285);
+  --secondary: oklch(0.26 0.005 285);
+  --secondary-foreground: oklch(0.92 0 0);
+  --muted: oklch(0.26 0.005 285);
+  --muted-foreground: oklch(0.68 0.01 285);
+  --accent: oklch(0.26 0.005 285);
+  --accent-foreground: oklch(0.92 0 0);
+  --destructive: oklch(0.50 0.18 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.28 0.005 285);
+  --input: oklch(0.28 0.005 285);
+  --ring: oklch(0.50 0.01 285);
+}
+
+/* ─── Accent: forest ─────────────────────────────────────────────────────── */
+:root[data-accent='forest'] {
+  --primary: oklch(0.55 0.15 150);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.92 0.05 145);
+  --secondary-foreground: oklch(0.24 0.05 150);
+  --muted: oklch(0.92 0.03 150);
+  --muted-foreground: oklch(0.46 0.04 150);
+  --accent: oklch(0.92 0.05 145);
+  --accent-foreground: oklch(0.24 0.05 150);
+  --ring: oklch(0.61 0.13 150);
+}
+.dark[data-accent='forest'] {
+  --primary: oklch(0.78 0.12 150);
+  --primary-foreground: oklch(0.2 0.05 150);
+  --secondary: oklch(0.32 0.04 150);
+  --secondary-foreground: oklch(0.94 0.01 150);
+  --muted: oklch(0.32 0.04 150);
+  --muted-foreground: oklch(0.78 0.04 150);
+  --accent: oklch(0.32 0.04 150);
+  --accent-foreground: oklch(0.94 0.01 150);
+  --ring: oklch(0.69 0.1 150);
+}
+
+/* ─── Accent: sunset ─────────────────────────────────────────────────────── */
+:root[data-accent='sunset'] {
+  --primary: oklch(0.65 0.18 75);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.95 0.05 80);
+  --secondary-foreground: oklch(0.28 0.08 70);
+  --muted: oklch(0.95 0.03 80);
+  --muted-foreground: oklch(0.48 0.07 75);
+  --accent: oklch(0.95 0.05 80);
+  --accent-foreground: oklch(0.28 0.08 70);
+  --ring: oklch(0.69 0.17 70);
+}
+.dark[data-accent='sunset'] {
+  --primary: oklch(0.78 0.15 70);
+  --primary-foreground: oklch(0.24 0.07 60);
+  --secondary: oklch(0.36 0.06 70);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.36 0.06 70);
+  --muted-foreground: oklch(0.8 0.08 70);
+  --accent: oklch(0.36 0.06 70);
+  --accent-foreground: oklch(0.98 0 0);
+  --ring: oklch(0.78 0.15 70);
+}
+
+/* ─── Accent: cherry ─────────────────────────────────────────────────────── */
+:root[data-accent='cherry'] {
+  --primary: oklch(0.55 0.22 25);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0.03 25);
+  --secondary-foreground: oklch(0.30 0.10 25);
+  --muted: oklch(0.94 0.02 25);
+  --muted-foreground: oklch(0.50 0.08 25);
+  --accent: oklch(0.94 0.03 25);
+  --accent-foreground: oklch(0.30 0.10 25);
+  --ring: oklch(0.60 0.20 25);
+}
+.dark[data-accent='cherry'] {
+  --primary: oklch(0.68 0.18 25);
+  --primary-foreground: oklch(0.20 0.08 25);
+  --secondary: oklch(0.28 0.06 25);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.28 0.06 25);
+  --muted-foreground: oklch(0.72 0.10 25);
+  --accent: oklch(0.28 0.06 25);
+  --accent-foreground: oklch(0.98 0 0);
+  --ring: oklch(0.68 0.18 25);
+}
+
+/* ─── Accent: violet ─────────────────────────────────────────────────────── */
+:root[data-accent='violet'] {
+  --primary: oklch(0.58 0.18 290);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.93 0.04 290);
+  --secondary-foreground: oklch(0.28 0.08 290);
+  --muted: oklch(0.93 0.03 290);
+  --muted-foreground: oklch(0.48 0.08 290);
+  --accent: oklch(0.93 0.04 290);
+  --accent-foreground: oklch(0.28 0.08 290);
+  --ring: oklch(0.64 0.16 290);
+}
+.dark[data-accent='violet'] {
+  --primary: oklch(0.74 0.14 290);
+  --primary-foreground: oklch(0.24 0.07 290);
+  --secondary: oklch(0.32 0.06 290);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.32 0.06 290);
+  --muted-foreground: oklch(0.76 0.08 290);
+  --accent: oklch(0.32 0.06 290);
+  --accent-foreground: oklch(0.98 0 0);
+  --ring: oklch(0.74 0.14 290);
+}
+
+/* ─── Accent: blue ───────────────────────────────────────────────────────── */
+:root[data-accent='blue'] {
+  --primary: oklch(0.55 0.20 250);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0.03 250);
+  --secondary-foreground: oklch(0.26 0.08 250);
+  --muted: oklch(0.94 0.02 250);
+  --muted-foreground: oklch(0.48 0.06 250);
+  --accent: oklch(0.94 0.03 250);
+  --accent-foreground: oklch(0.26 0.08 250);
+  --ring: oklch(0.60 0.18 250);
+}
+.dark[data-accent='blue'] {
+  --primary: oklch(0.68 0.16 250);
+  --primary-foreground: oklch(0.20 0.06 250);
+  --secondary: oklch(0.26 0.06 250);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.26 0.06 250);
+  --muted-foreground: oklch(0.74 0.08 250);
+  --accent: oklch(0.26 0.06 250);
+  --accent-foreground: oklch(0.98 0 0);
+  --ring: oklch(0.68 0.16 250);
+}
+
+/* ─── Tailwind v4 theme mapping ──────────────────────────────────────────── */
 @theme inline {
-  --color-background: oklch(1 0 0);
-  --color-foreground: oklch(0.141 0.005 285.823);
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.141 0.005 285.823);
-  --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.141 0.005 285.823);
-  --color-primary: oklch(0.21 0.006 285.885);
-  --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.967 0.001 286.375);
-  --color-secondary-foreground: oklch(0.21 0.006 285.885);
-  --color-muted: oklch(0.967 0.001 286.375);
-  --color-muted-foreground: oklch(0.552 0.016 285.938);
-  --color-accent: oklch(0.967 0.001 286.375);
-  --color-accent-foreground: oklch(0.21 0.006 285.885);
-  --color-destructive: oklch(0.577 0.245 27.325);
-  --color-destructive-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.92 0.004 286.32);
-  --color-input: oklch(0.92 0.004 286.32);
-  --color-ring: oklch(0.871 0.006 286.286);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  --radius-sm: calc(0.625rem - 4px);
-  --radius-md: calc(0.625rem - 2px);
-  --radius-lg: 0.625rem;
-  --radius-xl: calc(0.625rem + 4px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Shadow system tokens */
+  --shadow-3d-xs:              var(--shadow-xs);
+  --shadow-3d-sm:              var(--shadow-sm);
+  --shadow-3d-md:              var(--shadow-md);
+  --shadow-3d-lg:              var(--shadow-lg);
+  --shadow-3d-xl:              var(--shadow-xl);
+  --shadow-3d-2xl:             var(--shadow-2xl);
+  --shadow-3d-btn:             var(--shadow-btn);
+  --shadow-3d-btn-hover:       var(--shadow-btn-hover);
+  --shadow-3d-btn-active:      var(--shadow-btn-active);
+  --shadow-3d-card:            var(--shadow-card);
+  --shadow-3d-card-hover:      var(--shadow-card-hover);
+  --shadow-3d-dialog:          var(--shadow-dialog);
+  --shadow-3d-input:           var(--shadow-input);
+  --shadow-3d-input-focus:     var(--shadow-input-focus);
+  --shadow-3d-inner:           var(--shadow-inner);
+  --shadow-3d-inner-sm:        var(--shadow-inner-sm);
+  --shadow-3d-inset-well:      var(--shadow-inset-well);
+  --shadow-3d-inset-well-deep: var(--shadow-inset-well-deep);
 
   --font-display: "Rubik", sans-serif;
-  --font-sans: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-sans: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 
-  --animate-fade-in: fade-in 0.6s ease-out both;
-  --animate-fade-in-up: fade-in-up 0.6s ease-out both;
+  --animate-fade-in:        fade-in 0.6s ease-out both;
+  --animate-fade-in-up:     fade-in-up 0.6s ease-out both;
   --animate-slide-in-right: slide-in-right 0.6s ease-out both;
 
   @keyframes fade-in {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
   }
-
   @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes slide-in-right {
     from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
+    to   { opacity: 1; transform: translateX(0); }
   }
 }
 
-:root {
-  --shadow-3d-xs: inset 0 1px 0 0 hsl(0 0% 100% / 40%), 0 0 0 1px hsl(220 10% 15% / 8%), 0 1px 2px 0 hsl(220 10% 15% / 15%), 0 2px 4px 0 hsl(220 10% 15% / 10%);
-  --shadow-3d-sm: inset 0 1px 0 0 hsl(0 0% 100% / 60%), 0 0 0 1px hsl(220 10% 15% / 10%), 0 1px 2px 0 hsl(220 10% 15% / 15%), 0 3px 6px -1px hsl(220 10% 15% / 12%), 0 6px 12px -3px hsl(220 10% 15% / 8%);
-  --shadow-3d-md: inset 0 1px 0 0 hsl(0 0% 100% / 80%), 0 0 0 1px hsl(220 10% 15% / 10%), 0 2px 4px 0 hsl(220 10% 15% / 15%), 0 6px 12px -2px hsl(220 10% 15% / 12%), 0 12px 24px -6px hsl(220 10% 15% / 8%);
-  --shadow-3d-lg: inset 0 1px 0 0 hsl(0 0% 100% / 80%), 0 0 0 1px hsl(220 10% 15% / 10%), 0 4px 8px 0 hsl(220 10% 15% / 15%), 0 12px 24px -4px hsl(220 10% 15% / 12%), 0 24px 48px -12px hsl(220 10% 15% / 8%);
-  --shadow-3d-xl: inset 0 1px 0 0 hsl(0 0% 100% / 80%), 0 0 0 1px hsl(220 10% 15% / 10%), 0 8px 16px 0 hsl(220 10% 15% / 15%), 0 24px 48px -8px hsl(220 10% 15% / 12%), 0 48px 96px -24px hsl(220 10% 15% / 8%);
-  --shadow-3d-btn: inset 0 1px 0 0 hsl(0 0% 100% / 50%), inset 0 -1px 0 0 hsl(220 10% 15% / 10%), 0 0 0 1px hsl(220 10% 15% / 12%), 0 2px 4px 0 hsl(220 10% 15% / 18%), 0 4px 8px -2px hsl(220 10% 15% / 12%);
-  --shadow-3d-btn-hover: inset 0 1px 0 0 hsl(0 0% 100% / 60%), inset 0 -1px 0 0 hsl(220 10% 15% / 8%), 0 0 0 1px hsl(220 10% 15% / 15%), 0 4px 8px 0 hsl(220 10% 15% / 20%), 0 8px 16px -4px hsl(220 10% 15% / 15%), 0 16px 32px -8px hsl(220 10% 15% / 10%);
-  --shadow-3d-btn-active: inset 0 2px 6px 0 hsl(220 10% 15% / 20%), inset 0 0 0 1px hsl(220 10% 15% / 12%), 0 0 0 1px hsl(220 10% 15% / 5%);
-  --shadow-3d-card: inset 0 1px 0 0 hsl(0 0% 100% / 60%), 0 0 0 1px hsl(220 10% 15% / 10%), 0 2px 4px 0 hsl(220 10% 15% / 15%), 0 6px 12px -3px hsl(220 10% 15% / 12%), 0 12px 24px -6px hsl(220 10% 15% / 8%);
-  --shadow-3d-card-hover: inset 0 1px 0 0 hsl(0 0% 100% / 80%), 0 0 0 1px hsl(220 10% 15% / 12%), 0 4px 8px 0 hsl(220 10% 15% / 18%), 0 12px 24px -6px hsl(220 10% 15% / 12%), 0 24px 48px -12px hsl(220 10% 15% / 8%);
+/* ─── Base layer ─────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  ::-webkit-scrollbar         { width: 7px; height: 7px; }
+  ::-webkit-scrollbar-track   { background: transparent; }
+  ::-webkit-scrollbar-thumb   { background-color: var(--border); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background-color: var(--muted-foreground); }
+  ::-webkit-scrollbar-corner  { background: transparent; }
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--color-background);
-  color: var(--color-foreground);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-}
-
+/* ─── Grainy texture utility ─────────────────────────────────────────────── */
 .bg-grainy {
   position: relative;
 }
@@ -85,17 +629,15 @@ h1, h2, h3, h4, h5, h6 {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  opacity: 0.4;
   pointer-events: none;
-  opacity: 0.15;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+  z-index: 1;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
+/* ─── Smartphone scroll constraint ───────────────────────────────────────── */
+@media (max-width: 767px) {
+  html, body { overflow-x: hidden; }
 }
-*::-webkit-scrollbar { width: 7px; height: 7px; }
-*::-webkit-scrollbar-track { background: transparent; }
-*::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
-*::-webkit-scrollbar-thumb:hover { background: var(--color-muted-foreground); }

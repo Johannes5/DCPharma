@@ -109,14 +109,20 @@ export default function Hero() {
             <div
               className="relative z-10 w-full max-w-lg xl:max-w-xl"
             >
-              <img
-                src="/hero-original.png"
-                alt="DC Pharma - Comprehensive LATAM Regulatory Guidance"
-                className="w-full rounded-2xl"
-                style={{
-                  boxShadow: "var(--shadow-3d-xl)",
-                }}
-              />
+              <picture>
+                <source
+                  media="(max-width: 767px)"
+                  srcSet="/hero-smartphone.png"
+                />
+                <img
+                  src="/hero-original.png"
+                  alt="DC Pharma - Comprehensive LATAM Regulatory Guidance"
+                  className="w-full rounded-2xl"
+                  style={{
+                    boxShadow: "var(--shadow-3d-xl)",
+                  }}
+                />
+              </picture>
             </div>
           </div>
         </div>
