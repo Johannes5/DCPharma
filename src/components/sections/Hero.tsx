@@ -50,20 +50,24 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-primary text-primary-foreground transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-primary [background-image:linear-gradient(to_bottom,hsl(0_0%_100%/10%),hsl(0_0%_0%/6%))] text-primary-foreground transition-all duration-150 hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-btn)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn)")}
+                onMouseDown={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-active)")}
+                onMouseUp={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
               >
                 Request Your Free Consultation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-background/80 text-foreground border border-border/60 backdrop-blur-sm transition-all duration-200 hover:bg-background"
+                className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-background/80 text-foreground border border-border/60 backdrop-blur-sm transition-all duration-150 hover:bg-background hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-sm)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-md)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-sm)")}
+                onMouseDown={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-inner-sm)")}
+                onMouseUp={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-md)")}
               >
                 Explore Our Services
                 <ChevronDown className="w-4 h-4" />
