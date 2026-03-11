@@ -75,7 +75,7 @@ export default function Solutions() {
           {solutions.map((solution, idx) => (
             <div
               key={solution.number}
-              className="group relative rounded-2xl bg-card/80 backdrop-blur-sm border border-border/60 overflow-hidden transition-all duration-300 hover:-translate-y-0.5"
+              className="group relative rounded-2xl bg-card/80 backdrop-blur-sm border border-border/60 overflow-hidden transition-all duration-300 hover:-translate-y-px active:translate-y-0"
               style={{ boxShadow: "var(--shadow-3d-card)" }}
               onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card-hover)")}
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card)")}

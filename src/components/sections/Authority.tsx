@@ -42,10 +42,12 @@ export default function Authority() {
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold bg-primary text-primary-foreground transition-shadow duration-200"
+                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold bg-primary [background-image:linear-gradient(to_bottom,hsl(0_0%_100%/10%),hsl(0_0%_0%/6%))] text-primary-foreground transition-all duration-150 hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-btn)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn)")}
+                onMouseDown={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-active)")}
+                onMouseUp={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
               >
                 Work With Us
               </a>
@@ -57,7 +59,7 @@ export default function Authority() {
             {pillars.map((pillar, idx) => (
               <div
                 key={pillar.title}
-                className="group relative p-8 rounded-2xl bg-card border border-border/60 transition-all duration-300 hover:-translate-y-0.5"
+                className="group relative p-8 rounded-2xl bg-card border border-border/60 transition-all duration-300 hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card)")}

@@ -91,7 +91,7 @@ export default function CTA() {
                     type="text"
                     required
                     className="w-full h-10 px-4 rounded-lg text-sm bg-background border border-border/60 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 transition-shadow"
-                    style={{ boxShadow: "var(--shadow-3d-input)" }}
+                    style={{ boxShadow: "var(--shadow-inset-well)" }}
                     placeholder="John Smith"
                   />
                 </div>
@@ -103,7 +103,7 @@ export default function CTA() {
                     type="text"
                     required
                     className="w-full h-10 px-4 rounded-lg text-sm bg-background border border-border/60 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 transition-shadow"
-                    style={{ boxShadow: "var(--shadow-3d-input)" }}
+                    style={{ boxShadow: "var(--shadow-inset-well)" }}
                     placeholder="Your Company"
                   />
                 </div>
@@ -116,7 +116,7 @@ export default function CTA() {
                   type="email"
                   required
                   className="w-full h-10 px-4 rounded-lg text-sm bg-background border border-border/60 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 transition-shadow"
-                  style={{ boxShadow: "var(--shadow-3d-input)" }}
+                  style={{ boxShadow: "var(--shadow-inset-well)" }}
                   placeholder="john@company.com"
                 />
               </div>
@@ -127,7 +127,7 @@ export default function CTA() {
                 <select
                   required
                   className="w-full h-10 px-4 rounded-lg text-sm bg-background border border-border/60 text-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 transition-shadow"
-                  style={{ boxShadow: "var(--shadow-3d-input)" }}
+                  style={{ boxShadow: "var(--shadow-inset-well)" }}
                 >
                   <option value="">Select a category...</option>
                   <option value="pharma">Pharmaceuticals</option>
@@ -146,16 +146,18 @@ export default function CTA() {
                 <textarea
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg text-sm bg-background border border-border/60 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 transition-shadow resize-none"
-                  style={{ boxShadow: "var(--shadow-3d-input)" }}
+                  style={{ boxShadow: "var(--shadow-inset-well)" }}
                   placeholder="Which products are you looking to register? What markets are you targeting?"
                 />
               </div>
               <button
                 type="submit"
-                className="group w-full inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-primary text-primary-foreground transition-all duration-200"
+                className="group w-full inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl text-sm font-semibold bg-primary [background-image:linear-gradient(to_bottom,hsl(0_0%_100%/10%),hsl(0_0%_0%/6%))] text-primary-foreground transition-all duration-150 hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-btn)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn)")}
+                onMouseDown={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-active)")}
+                onMouseUp={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-btn-hover)")}
               >
                 Send Request
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
