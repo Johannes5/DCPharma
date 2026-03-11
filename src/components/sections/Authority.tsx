@@ -25,7 +25,7 @@ export default function Authority() {
   return (
     <section id="authority" className="py-24 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-16 items-start">
           {/* Left column */}
           <div className="lg:sticky lg:top-32">
             <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">
@@ -55,28 +55,29 @@ export default function Authority() {
           </div>
 
           {/* Right column - pillar cards */}
-          <div className="space-y-6">
+          <div className="space-y-4 lg:space-y-6">
             {pillars.map((pillar, idx) => (
               <div
                 key={pillar.title}
-                className="group relative p-8 rounded-2xl bg-card border border-border/60 transition-all duration-300 hover:-translate-y-px active:translate-y-0"
+                className="group relative overflow-hidden p-5 lg:p-8 rounded-2xl bg-card border border-border/60 transition-all duration-300 hover:-translate-y-px active:translate-y-0"
                 style={{ boxShadow: "var(--shadow-3d-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card)")}
               >
-                <div className="flex items-start gap-6">
+                {/* Watermark number */}
+                <div className="absolute -bottom-4 right-4 text-[7rem] sm:text-[9rem] font-bold font-mono text-foreground/[0.04] select-none pointer-events-none leading-none">
+                  0{idx + 1}
+                </div>
+                <div className="relative flex items-start gap-5 lg:gap-6">
                   <div className="shrink-0">
-                    <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center">
-                      <pillar.icon className="w-7 h-7 text-primary" />
+                    <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center">
+                      <pillar.icon className="w-6 h-6 lg:w-7 lg:h-7 text-primary" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-mono text-muted-foreground/40">0{idx + 1}</span>
-                      <h3 className="font-display text-xl font-bold text-foreground">
-                        {pillar.title}
-                      </h3>
-                    </div>
+                    <h3 className="font-display text-xl font-bold text-foreground mb-2">
+                      {pillar.title}
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {pillar.description}
                     </p>

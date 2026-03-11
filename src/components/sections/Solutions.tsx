@@ -60,7 +60,7 @@ export default function Solutions() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-20">
+        <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-20">
           <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">
             Our Solutions
           </p>
@@ -80,17 +80,18 @@ export default function Solutions() {
               onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card-hover)")}
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-3d-card)")}
             >
-              <div className={`grid lg:grid-cols-[1fr_1.2fr] gap-8 p-8 lg:p-10 ${idx % 2 === 1 ? "lg:direction-rtl" : ""}`}>
-                <div className={`space-y-5 ${idx % 2 === 1 ? "lg:order-2 lg:direction-ltr" : ""}`}>
+              {/* Watermark number */}
+              <div className="absolute top-2 right-5 text-[8rem] sm:text-[11rem] font-bold font-mono text-foreground/[0.04] select-none pointer-events-none leading-none">
+                {solution.number}
+              </div>
+              <div className={`relative grid lg:grid-cols-[1fr_1.2fr] gap-5 lg:gap-8 p-5 lg:p-10 ${idx % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+                <div className={`space-y-4 lg:space-y-5 ${idx % 2 === 1 ? "lg:order-2 lg:direction-ltr" : ""}`}>
                   <div className="flex items-center gap-4">
                     <div
                       className="w-12 h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center"
                     >
                       <solution.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <span className="text-sm font-mono text-muted-foreground/50 font-medium">
-                      {solution.number}
-                    </span>
                   </div>
 
                   <div>
