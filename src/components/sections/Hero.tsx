@@ -1,8 +1,29 @@
 import { ArrowRight, ChevronDown } from "lucide-react"
+import { useRef, useState } from "react"
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [imageOffset, setImageOffset] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!sectionRef.current) return
+    const rect = sectionRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setImageOffset({ x: x * 22, y: y * 16 })
+  }
+
+  const handleMouseLeave = () => {
+    setImageOffset({ x: 0, y: 0 })
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-grainy">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center overflow-hidden bg-grainy"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Background gradient matching the hero image style */}
       <div
         className="absolute inset-0 z-0"
@@ -108,10 +129,16 @@ export default function Hero() {
                   radial-gradient(ellipse 60% 50% at 30% 65%, oklch(0.93 0.012 260 / 0.6), transparent),
                   radial-gradient(ellipse 50% 40% at 70% 35%, oklch(0.95 0.008 210 / 0.5), transparent)
                 `,
+                transform: `translate(${imageOffset.x * 0.4}px, ${imageOffset.y * 0.4}px)`,
+                transition: "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               }}
             />
             <div
               className="relative z-10 w-full max-w-lg xl:max-w-xl"
+              style={{
+                transform: `translate(${imageOffset.x}px, ${imageOffset.y}px)`,
+                transition: "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              }}
             >
               <picture>
                 <source
