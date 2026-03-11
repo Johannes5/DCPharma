@@ -639,3 +639,9 @@
 @media (max-width: 767px) {
   html, body { overflow-x: hidden; }
 }
+
+/* ─── Footer overscroll background fix ───────────────────────────────────── */
+/* Matches the footer bg-primary so rounded-corner phones don't show white */
+html {
+  background-color: var(--primary);
+}

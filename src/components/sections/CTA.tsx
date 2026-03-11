@@ -1,8 +1,30 @@
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react"
+import { useRef, useState } from "react"
 
 export default function CTA() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [formOffset, setFormOffset] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!sectionRef.current) return
+    const rect = sectionRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setFormOffset({ x: x * 14, y: y * 10 })
+  }
+
+  const handleMouseLeave = () => {
+    setFormOffset({ x: 0, y: 0 })
+  }
+
   return (
-    <section id="contact" className="py-24 lg:py-32 relative bg-grainy overflow-hidden">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-24 lg:py-32 relative bg-grainy overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -70,7 +92,11 @@ export default function CTA() {
 
           <div
             className="rounded-2xl bg-card/80 backdrop-blur-sm border border-border/60 p-8 lg:p-10"
-            style={{ boxShadow: "var(--shadow-3d-lg)" }}
+            style={{
+              boxShadow: "var(--shadow-3d-lg)",
+              transform: `translate(${formOffset.x}px, ${formOffset.y}px)`,
+              transition: "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            }}
           >
             <h3 className="font-display text-xl font-bold text-foreground mb-6">
               Request Your Free Consultation
